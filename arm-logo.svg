@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="100%" height="100%">
+  <defs>
+    <!-- Rich Emerald / Tether Green Diamond Gradient -->
+    <linearGradient id="emeraldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#34d399" />
+      <stop offset="35%" stop-color="#10b981" />
+      <stop offset="70%" stop-color="#059669" />
+      <stop offset="100%" stop-color="#064e3b" />
+    </linearGradient>
+
+    <!-- Crisp Mint / Emerald Border -->
+    <linearGradient id="mintBorder" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#a7f3d0" />
+      <stop offset="50%" stop-color="#34d399" />
+      <stop offset="100%" stop-color="#047857" />
+    </linearGradient>
+
+    <!-- Silver/White Gradient for the Rising Arm -->
+    <linearGradient id="armGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="70%" stop-color="#f1f5f9" />
+      <stop offset="100%" stop-color="#cbd5e1" />
+    </linearGradient>
+
+    <!-- Clip path so the arm rises cleanly out of the bottom diamond edges -->
+    <clipPath id="diamondClip">
+      <polygon points="100,12 188,100 100,188 12,100" />
+    </clipPath>
+
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#000000" flood-opacity="0.5"/>
+    </filter>
+  </defs>
+
+  <!-- Outer Green Diamond (Rhombus) -->
+  <polygon points="100,8 192,100 100,192 8,100" 
+           fill="url(#emeraldGrad)" 
+           stroke="url(#mintBorder)" 
+           stroke-width="5" 
+           stroke-linejoin="round"
+           filter="url(#shadow)"/>
+
+  <!-- Inner Diamond Facet Line -->
+  <polygon points="100,22 178,100 100,178 22,100" 
+           fill="none" 
+           stroke="#ffffff" 
+           stroke-width="2" 
+           stroke-opacity="0.3"
+           stroke-linejoin="round"/>
+
+  <!-- Radiant energy rays behind the fist -->
+  <g stroke="#a7f3d0" stroke-width="2.5" stroke-linecap="round" opacity="0.55">
+    <line x1="100" y1="30" x2="100" y2="42" />
+    <line x1="68" y1="45" x2="76" y2="54" />
+    <line x1="132" y1="45" x2="124" y2="54" />
+  </g>
+
+  <!-- Bold Geometric Arm & Clenched Fist Rising from Bottom of Diamond -->
+  <g clip-path="url(#diamondClip)" filter="url(#shadow)">
+    <!-- Muscular Forearm & Fist Silhouette Rising Upward -->
+    <path d="M 74 195
+             L 80 120
+             L 72 108
+             L 72 80
+             L 80 70
+             L 80 62
+             L 92 58
+             L 92 64
+             L 104 58
+             L 104 64
+             L 116 60
+             L 116 66
+             L 126 64
+             L 128 96
+             L 118 114
+             L 126 195
+             Z" 
+          fill="url(#armGrad)" />
+
+    <!-- Clenched Thumb & Knuckle Definition Cutouts (Emerald Dark) -->
+    <!-- Thumb folded across front of fist -->
+    <path d="M 72 92 L 106 86 L 112 96 L 82 102 Z" fill="#065f46" />
+    <path d="M 76 89 L 106 84 L 110 92 L 76 96 Z" fill="#ffffff" />
+
+    <!-- Finger divisions at top of fist -->
+    <line x1="91" y1="60" x2="91" y2="80" stroke="#047857" stroke-width="3" stroke-linecap="round" />
+    <line x1="103" y1="60" x2="103" y2="80" stroke="#047857" stroke-width="3" stroke-linecap="round" />
+    <line x1="115" y1="62" x2="115" y2="82" stroke="#047857" stroke-width="3" stroke-linecap="round" />
+
+    <!-- Forearm muscle contour line -->
+    <path d="M 96 122 L 93 168" stroke="#047857" stroke-width="3.5" stroke-linecap="round" opacity="0.7" />
+    <path d="M 109 128 L 112 168" stroke="#047857" stroke-width="2.5" stroke-linecap="round" opacity="0.5" />
+  </g>
+</svg>
