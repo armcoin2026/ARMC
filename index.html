@@ -3,154 +3,175 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ARM Coin ($ARMC) — Official Multi-Chain Cryptocurrency (TON & Base)</title>
+    <title>ARM Coin ($ARMC) — Institutional Multi-Chain Digital Asset (TON & Base)</title>
     <link rel="icon" type="image/png" href="./arm-logo.png">
     <meta property="og:title" content="ARM Coin ($ARMC) — Power in Your Hands">
-    <meta property="og:description" content="A people-first cryptocurrency on TON & Base (21M fixed supply). No one can stop your voice in the market.">
+    <meta property="og:description" content="A decentralized, fixed-supply cryptocurrency on TON & Base (21,000,000 cap). No one can stop your voice in the market.">
     <meta property="og:image" content="https://raw.githubusercontent.com/armcoin2026/ARMC/main/arm-logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
     <style>
         :root {
             --emerald: #10b981;
-            --mint: #34d399;
-            --gold: #fbbf24;
-            --dark-bg: #050811;
-            --card-bg: rgba(15, 23, 42, 0.82);
+            --emerald-dark: #059669;
+            --bg-primary: #070a0f;
+            --bg-surface: #0d131d;
+            --bg-elevated: #111927;
+            --border-subtle: rgba(255, 255, 255, 0.08);
+            --border-emerald: rgba(16, 185, 129, 0.28);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
         }
         body {
-            background-color: var(--dark-bg);
+            background-color: var(--bg-primary);
             background-image:
-                radial-gradient(circle at 15% 15%, rgba(16, 185, 129, 0.16) 0%, transparent 42%),
-                radial-gradient(circle at 85% 30%, rgba(56, 189, 248, 0.10) 0%, transparent 45%),
-                radial-gradient(circle at 50% 85%, rgba(16, 185, 129, 0.10) 0%, transparent 50%);
-            color: #f8fafc;
+                radial-gradient(ellipse 80% 50% at 50% -10%, rgba(16, 185, 129, 0.10), transparent),
+                radial-gradient(ellipse 60% 40% at 85% 20%, rgba(37, 99, 235, 0.06), transparent);
+            color: var(--text-primary);
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            -webkit-font-smoothing: antialiased;
             overflow-x: hidden;
         }
-        .ticker-bar {
-            background: linear-gradient(90deg, rgba(6, 78, 59, 0.65), rgba(15, 23, 42, 0.95), rgba(6, 78, 59, 0.65));
-            border-bottom: 1px solid rgba(52, 211, 153, 0.25);
-            font-size: 0.8rem;
-            padding: 7px 0;
+        .font-mono {
+            font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
         }
-        .navbar-glass {
-            background: rgba(5, 8, 17, 0.88);
-            backdrop-filter: blur(14px);
-            border-bottom: 1px solid rgba(52, 211, 153, 0.18);
+        .ticker-bar {
+            background: #0a0f18;
+            border-bottom: 1px solid var(--border-subtle);
+            font-size: 0.78rem;
+            padding: 8px 0;
+            color: var(--text-secondary);
+        }
+        .navbar-clean {
+            background: rgba(7, 10, 15, 0.88);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border-subtle);
+        }
+        .hero-emblem-frame {
+            width: 148px;
+            height: 148px;
+            margin: 0 auto 20px auto;
+            border-radius: 28px;
+            padding: 6px;
+            background: linear-gradient(145deg, rgba(255,255,255,0.12), rgba(16,185,129,0.18));
+            box-shadow: 0 24px 48px rgba(0, 0, 0, 0.65), 0 0 36px rgba(16, 185, 129, 0.16);
         }
         .hero-logo {
-            width: 130px;
-            height: 130px;
-            border-radius: 26px;
-            box-shadow: 0 0 55px rgba(16, 185, 129, 0.5);
-            border: 2px solid rgba(110, 231, 183, 0.4);
-            animation: float 4s ease-in-out infinite;
+            width: 100%;
+            height: 100%;
+            border-radius: 22px;
+            object-fit: cover;
+            display: block;
         }
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-        }
-        .text-gradient {
-            background: linear-gradient(135deg, #ffffff 0%, #a7f3d0 45%, #10b981 100%);
+        .hero-heading {
+            letter-spacing: -0.03em;
+            line-height: 1.08;
+            background: linear-gradient(180deg, #ffffff 0%, #cbd5e1 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        .btn-emerald {
-            background: linear-gradient(135deg, #10b981 0%, #047857 100%);
-            border: 1px solid #6ee7b7;
-            color: #fff;
-            font-weight: 700;
-            padding: 12px 24px;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(16, 185, 129, 0.35);
-            transition: all 0.2s ease;
+        .btn-primary-emerald {
+            background: linear-gradient(180deg, #10b981 0%, #059669 100%);
+            border: 1px solid rgba(110, 231, 183, 0.35);
+            color: #ffffff;
+            font-weight: 600;
+            padding: 12px 22px;
+            border-radius: 10px;
+            box-shadow: 0 4px 14px rgba(16, 185, 129, 0.22);
+            transition: all 0.18s ease;
         }
-        .btn-emerald:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 28px rgba(52, 211, 153, 0.55);
-            color: #fff;
+        .btn-primary-emerald:hover {
+            background: linear-gradient(180deg, #059669 0%, #047857 100%);
+            color: #ffffff;
+            transform: translateY(-1px);
         }
-        .btn-base {
-            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
-            border: 1px solid #93c5fd;
-            color: #fff;
-            font-weight: 700;
-            padding: 12px 24px;
-            border-radius: 12px;
-            transition: all 0.2s ease;
+        .btn-primary-base {
+            background: #1d4ed8;
+            border: 1px solid rgba(147, 197, 253, 0.3);
+            color: #ffffff;
+            font-weight: 600;
+            padding: 12px 22px;
+            border-radius: 10px;
+            transition: all 0.18s ease;
         }
-        .btn-base:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 24px rgba(59, 130, 246, 0.45);
-            color: #fff;
+        .btn-primary-base:hover {
+            background: #1e40af;
+            color: #ffffff;
+            transform: translateY(-1px);
         }
-        .glass-card {
-            background: var(--card-bg);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(52, 211, 153, 0.22);
-            border-radius: 20px;
+        .surface-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
             padding: 26px;
-            transition: transform 0.2s ease, border-color 0.2s ease;
-        }
-        .glass-card:hover {
-            transform: translateY(-3px);
-            border-color: rgba(52, 211, 153, 0.5);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
         }
         .index-metric-card {
-            background: rgba(9, 14, 28, 0.9);
-            border: 1px solid rgba(52, 211, 153, 0.2);
-            border-radius: 14px;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
             padding: 16px;
             height: 100%;
         }
         .contract-pill {
-            background: rgba(9, 13, 24, 0.92);
-            border: 1px solid #334155;
-            border-radius: 14px;
-            padding: 12px 16px;
-            font-family: monospace;
-            color: #34d399;
+            background: #0a0f18;
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            padding: 14px 16px;
             word-break: break-all;
         }
-        .trust-pill {
-            background: rgba(16, 185, 129, 0.1);
-            border: 1px solid rgba(16, 185, 129, 0.35);
+        .meta-pill {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-subtle);
             border-radius: 999px;
-            padding: 6px 14px;
-            font-size: 0.8rem;
-            color: #a7f3d0;
+            padding: 5px 13px;
+            font-size: 0.76rem;
+            font-weight: 500;
+            color: #cbd5e1;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
         }
-        .pulse-dot {
+        .status-dot {
             display: inline-block;
-            width: 9px;
-            height: 9px;
+            width: 7px;
+            height: 7px;
             background-color: #10b981;
             border-radius: 50%;
-            box-shadow: 0 0 8px #10b981;
-            animation: pulse 1.8s infinite;
+            box-shadow: 0 0 6px #10b981;
         }
-        @keyframes pulse {
-            0% { transform: scale(0.95); opacity: 0.8; }
-            50% { transform: scale(1.25); opacity: 1; }
-            100% { transform: scale(0.95); opacity: 0.8; }
+        .icon-svg {
+            width: 15px;
+            height: 15px;
+            vertical-align: -2px;
         }
         .accordion-item {
-            background: rgba(15, 23, 42, 0.75);
-            border: 1px solid rgba(52, 211, 153, 0.2);
-            color: #f8fafc;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            color: var(--text-primary);
         }
         .accordion-button {
             background: transparent;
-            color: #fff;
+            color: #f8fafc;
             font-weight: 600;
         }
         .accordion-button:not(.collapsed) {
-            background: rgba(16, 185, 129, 0.12);
+            background: rgba(16, 185, 129, 0.08);
             color: #34d399;
+            box-shadow: none;
         }
         .accordion-button::after {
             filter: invert(1);
+        }
+        .section-kicker {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #10b981;
         }
     </style>
 </head>
@@ -159,31 +180,37 @@
     <div class="ticker-bar">
         <div class="container d-flex flex-wrap justify-content-between align-items-center gap-2">
             <div class="d-flex flex-wrap align-items-center gap-3">
-                <span><span class="pulse-dot me-1"></span> <b>ARMC INDEX:</b> <span class="text-warning fw-bold" id="tickerPrice">$0.2224 USD</span> <span class="badge bg-success-subtle text-success ms-1" id="tickerChange">+77.9% vs Genesis</span></span>
-                <span class="d-none d-md-inline">💧 <b>POOL TVL:</b> <span class="text-info fw-bold" id="tickerTvl">$48.48</span></span>
-                <span class="d-none d-lg-inline">🔒 <b>MINTABLE:</b> <span class="text-success fw-bold">FALSE (LOCKED)</span></span>
+                <span class="d-inline-flex align-items-center gap-2">
+                    <span class="status-dot"></span>
+                    <span>NETWORK STATUS: <strong class="text-white">LIVE (TON &amp; BASE)</strong></span>
+                </span>
+                <span>ARMC INDEX: <strong class="text-success" id="tickerPrice">$0.2360 USD</strong> <span class="badge bg-success-subtle text-success ms-1" id="tickerChange">+88.8% vs Genesis</span></span>
+                <span class="d-none d-md-inline">TON POOL TVL: <strong class="text-white" id="tickerTvl">$49.67</strong></span>
+                <span class="d-none d-lg-inline">MINTABLE: <strong class="text-success">FALSE (REVOKED)</strong></span>
             </div>
             <div class="d-flex align-items-center gap-3">
-                <span>📊 <b>FDV (21M):</b> <span class="text-light fw-bold" id="tickerFdv">$4.67M</span></span>
-                <a href="#market-index" class="text-warning text-decoration-none fw-semibold">📈 Live Market Index ↓</a>
+                <span>FDV (21M): <strong class="text-white" id="tickerFdv">$4.96M</strong></span>
+                <a href="https://t.me/armcointoken2026" target="_blank" class="text-info text-decoration-none fw-semibold">Telegram</a>
+                <a href="https://x.com/armcoin_token" target="_blank" class="text-light text-decoration-none fw-semibold">X</a>
+                <a href="#market-index" class="text-success text-decoration-none fw-semibold">Live Market Index &rarr;</a>
             </div>
         </div>
     </div>
 
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark navbar-glass sticky-top py-3">
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-clean sticky-top py-3">
         <div class="container">
-            <a class="navbar-brand d-flex align-items-center gap-2 fw-bold fs-4" href="#">
-                <img src="./arm-logo.png" onerror="this.onerror=null;this.src='/static/arm-logo.png';" alt="ARMC" style="width: 40px; height: 40px; border-radius: 10px;">
+            <a class="navbar-brand d-flex align-items-center gap-2 fw-bold fs-5" href="#">
+                <img src="/static/arm-logo.png" onerror="this.onerror=null;this.src='./arm-logo.png';" alt="ARMC" style="width: 36px; height: 36px; border-radius: 9px; border: 1px solid rgba(255,255,255,0.12);">
                 <span>ARM Coin</span>
-                <span class="badge bg-success ms-1" style="font-size: 0.72rem;">$ARMC</span>
+                <span class="badge bg-dark border border-secondary text-success font-mono" style="font-size: 0.72rem;">ARMC</span>
             </a>
             <div class="d-flex flex-wrap gap-2 align-items-center">
-                <a href="#market-index" class="btn btn-sm btn-outline-warning d-none d-md-inline-block">📈 Live Market Index</a>
-                <a href="#mission" class="btn btn-sm btn-outline-light d-none d-lg-inline-block">Mission</a>
-                <a href="#security" class="btn btn-sm btn-outline-light d-none d-lg-inline-block">Security</a>
-                <a href="#roadmap" class="btn btn-sm btn-outline-light d-none d-md-inline-block">Roadmap</a>
-                <a href="https://app.ston.fi/swap?chartVisible=false&ft=TON&tt=EQDAYUeI-Q3OSuJQu2bh3kAFlPbmFQ3guyJViTro65Fej3j5" target="_blank" class="btn btn-sm btn-emerald py-2 px-3">🚀 Buy $ARMC</a>
+                <a href="#market-index" class="btn btn-sm btn-outline-secondary text-light d-none d-md-inline-block">Market Index</a>
+                <a href="#mission" class="btn btn-sm btn-outline-secondary text-light d-none d-lg-inline-block">Manifesto</a>
+                <a href="#security" class="btn btn-sm btn-outline-secondary text-light d-none d-lg-inline-block">Security</a>
+                <a href="#roadmap" class="btn btn-sm btn-outline-secondary text-light d-none d-md-inline-block">Roadmap</a>
+                <a href="https://app.ston.fi/swap?chartVisible=false&ft=TON&tt=EQDAYUeI-Q3OSuJQu2bh3kAFlPbmFQ3guyJViTro65Fej3j5" target="_blank" class="btn btn-sm btn-primary-emerald py-2 px-3">Trade ARMC</a>
             </div>
         </div>
     </nav>
@@ -194,102 +221,108 @@
             <div class="row align-items-center g-5">
                 <div class="col-lg-7">
                     <div class="d-flex flex-wrap gap-2 mb-3">
-                        <span class="trust-pill">✅ Ownership Revoked</span>
-                        <span class="trust-pill">💎 21,000,000 Fixed Cap</span>
-                        <span class="trust-pill">🌐 TON + Base Multi-Chain</span>
+                        <span class="meta-pill"><span class="status-dot"></span> Ownership Revoked</span>
+                        <span class="meta-pill">21,000,000 Fixed Supply</span>
+                        <span class="meta-pill">TON &amp; Base Mainnet</span>
                     </div>
 
-                    <h1 class="display-4 fw-bolder mb-3 text-gradient">
+                    <h1 class="display-4 fw-bold mb-3 hero-heading">
                         Power in Your Hands.<br>No One Can Stop Your Voice in the Market.
                     </h1>
-                    <p class="lead text-secondary mb-4">
-                        <b>ARM Coin ($ARMC)</b> is a decentralized, people-first cryptocurrency built on <b>TON Mainnet</b> and <b>Base Mainnet</b>. Symbolized by the rising silver arm inside an emerald diamond, $ARMC is permanently hard-capped at <b>21,000,000 tokens</b> with contract minting revoked forever.
+                    <p class="lead mb-4" style="color: var(--text-secondary); font-size: 1.08rem;">
+                        <strong class="text-white">ARM Coin ($ARMC)</strong> is a decentralized, fixed-supply digital asset operating on <strong class="text-white">TON Mainnet</strong> and <strong class="text-white">Base Mainnet</strong>. Represented by the rising silver arm inside an emerald diamond, ARMC is permanently capped at <strong class="text-white">21,000,000 tokens</strong> with on-chain minting permanently revoked on TON.
                     </p>
 
                     <!-- TON Mainnet Contract Bar -->
-                    <div class="contract-pill mb-3 border-info">
+                    <div class="contract-pill mb-3" style="border-left: 3px solid #10b981;">
                         <div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
                             <div>
-                                <small class="text-info d-block fw-bold" style="font-size: 0.72rem;">💎 TON MAINNET JETTON ADDRESS (TONKEEPER / TRUST WALLET / STON.FI)</small>
-                                <span id="tonContractAddr">EQDAYUeI-Q3OSuJQu2bh3kAFlPbmFQ3guyJViTro65Fej3j5</span>
+                                <small class="text-success d-block fw-semibold mb-1" style="font-size: 0.72rem; letter-spacing: 0.04em;">TON MAINNET JETTON CONTRACT (TONKEEPER / TRUST WALLET / STON.FI)</small>
+                                <span id="tonContractAddr" class="font-mono text-light small">EQDAYUeI-Q3OSuJQu2bh3kAFlPbmFQ3guyJViTro65Fej3j5</span>
                             </div>
                             <div class="d-flex flex-wrap gap-2">
-                                <button class="btn btn-sm btn-outline-info" onclick="copyText('EQDAYUeI-Q3OSuJQu2bh3kAFlPbmFQ3guyJViTro65Fej3j5', 'TON Jetton Address')">📋 Copy</button>
-                                <a href="https://tonviewer.com/EQDAYUeI-Q3OSuJQu2bh3kAFlPbmFQ3guyJViTro65Fej3j5" target="_blank" class="btn btn-sm btn-outline-light">Tonviewer ↗</a>
-                                <a href="https://app.ston.fi/swap?chartVisible=false&ft=TON&tt=EQDAYUeI-Q3OSuJQu2bh3kAFlPbmFQ3guyJViTro65Fej3j5" target="_blank" class="btn btn-sm btn-success">Buy on STON.fi ↗</a>
+                                <button class="btn btn-sm btn-outline-secondary text-light" onclick="copyText('EQDAYUeI-Q3OSuJQu2bh3kAFlPbmFQ3guyJViTro65Fej3j5', 'TON Jetton Address')">Copy</button>
+                                <a href="https://tonviewer.com/EQDAYUeI-Q3OSuJQu2bh3kAFlPbmFQ3guyJViTro65Fej3j5" target="_blank" class="btn btn-sm btn-outline-secondary text-light">Tonviewer</a>
+                                <a href="https://app.ston.fi/swap?chartVisible=false&ft=TON&tt=EQDAYUeI-Q3OSuJQu2bh3kAFlPbmFQ3guyJViTro65Fej3j5" target="_blank" class="btn btn-sm btn-success">Buy on STON.fi</a>
                             </div>
                         </div>
                     </div>
 
                     <!-- Base Mainnet Contract Bar -->
-                    <div class="contract-pill mb-4" style="border-color: #3b82f6;">
+                    <div class="contract-pill mb-4" style="border-left: 3px solid #3b82f6;">
                         <div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
                             <div>
-                                <small class="text-primary d-block fw-bold" style="font-size: 0.72rem;">🔵 BASE MAINNET CONTRACT ADDRESS (PHANTOM / METAMASK / BYBIT WEB3)</small>
-                                <span id="baseContractAddr" class="text-light">0x2c763209199c1c9E621F5920223bd242C19BB36f</span>
+                                <small class="text-info d-block fw-semibold mb-1" style="font-size: 0.72rem; letter-spacing: 0.04em;">BASE MAINNET ERC-20 CONTRACT (PHANTOM / METAMASK / TRUST WALLET)</small>
+                                <span id="baseContractAddr" class="font-mono text-light small">0x2c763209199c1c9E621F5920223bd242C19BB36f</span>
                             </div>
                             <div class="d-flex flex-wrap gap-2">
-                                <button class="btn btn-sm btn-outline-primary" onclick="copyText('0x2c763209199c1c9E621F5920223bd242C19BB36f', 'Base Mainnet Contract')">📋 Copy</button>
-                                <a href="https://basescan.org/token/0x2c763209199c1c9E621F5920223bd242C19BB36f" target="_blank" class="btn btn-sm btn-outline-light">Basescan ↗</a>
-                                <button class="btn btn-sm btn-primary" onclick="addBaseToWallet()">👻 Add to Phantom / MetaMask</button>
+                                <button class="btn btn-sm btn-outline-secondary text-light" onclick="copyText('0x2c763209199c1c9E621F5920223bd242C19BB36f', 'Base Mainnet Contract')">Copy</button>
+                                <a href="https://basescan.org/token/0x2c763209199c1c9E621F5920223bd242C19BB36f" target="_blank" class="btn btn-sm btn-outline-secondary text-light">BaseScan</a>
+                                <button class="btn btn-sm btn-primary" onclick="addBaseToWallet()">Add to Wallet</button>
                             </div>
                         </div>
                     </div>
 
                     <div class="d-flex flex-wrap gap-3">
-                        <a href="https://app.ston.fi/swap?chartVisible=false&ft=TON&tt=EQDAYUeI-Q3OSuJQu2bh3kAFlPbmFQ3guyJViTro65Fej3j5" target="_blank" class="btn btn-emerald btn-lg">🚀 Trade on STON.fi (TON)</a>
-                        <a href="https://app.uniswap.org/swap?chain=base&outputCurrency=0x2c763209199c1c9E621F5920223bd242C19BB36f" target="_blank" class="btn btn-base btn-lg">🦄 Trade on Uniswap (Base)</a>
+                        <a href="https://app.ston.fi/swap?chartVisible=false&ft=TON&tt=EQDAYUeI-Q3OSuJQu2bh3kAFlPbmFQ3guyJViTro65Fej3j5" target="_blank" class="btn btn-primary-emerald">Trade on STON.fi (TON)</a>
+                        <a href="https://app.uniswap.org/swap?chain=base&outputCurrency=0x2c763209199c1c9E621F5920223bd242C19BB36f" target="_blank" class="btn btn-primary-base">Trade on Uniswap (Base)</a>
                     </div>
-                    <div id="copyMsg" class="mt-2 small text-warning fw-semibold"></div>
+                    <div id="copyMsg" class="mt-2 small text-success fw-medium"></div>
                 </div>
 
-                <!-- Right Column: Live Market & Calculator Hub -->
+                <!-- Right Column: Live Swap Hub -->
                 <div class="col-lg-5 text-center">
-                    <img src="./arm-logo.png" onerror="this.onerror=null;this.src='/static/arm-logo.png';" alt="ARM Coin Emblem" class="hero-logo mb-3">
-                    <div class="glass-card text-start">
+                    <div class="hero-emblem-frame">
+                        <img src="/static/arm-logo.png" onerror="this.onerror=null;this.src='./arm-logo.png';" alt="ARM Coin Emblem" class="hero-logo">
+                    </div>
+                    <div class="surface-card text-start">
                         <div class="d-flex justify-content-between align-items-center mb-3">
                             <div>
-                                <span class="fw-bold text-white fs-5">📊 Live Swap Hub</span>
+                                <span class="fw-bold text-white fs-5">Live Swap Hub</span>
                                 <small class="d-block text-secondary">Real-time STON.fi AMM telemetry</small>
                             </div>
-                            <span class="badge bg-success px-3 py-2 fs-6" id="livePriceBadge">$0.2224 / ARMC</span>
+                            <span class="badge bg-success-subtle text-success border border-success px-3 py-2 fs-6 font-mono" id="livePriceBadge">$0.2360 / ARMC</span>
                         </div>
 
-                        <div class="p-3 rounded-3 mb-3" style="background: #080c17; border: 1px solid #1e293b;">
+                        <div class="p-3 rounded-3 mb-3" style="background: #080c14; border: 1px solid var(--border-subtle);">
                             <div class="d-flex justify-content-between small mb-2">
-                                <span class="text-secondary">TON DEX Pool (STON.fi)</span>
-                                <a href="https://tonviewer.com/EQBQUN7_FYdDWH_52EFy4Vq_fJxXpmuQy4Ll7SAmKl_e1qET" target="_blank" class="text-info text-decoration-none font-monospace">EQBQUN...1qET ↗</a>
+                                <span class="text-secondary">TON Pool (STON.fi)</span>
+                                <a href="https://tonviewer.com/EQBQUN7_FYdDWH_52EFy4Vq_fJxXpmuQy4Ll7SAmKl_e1qET" target="_blank" class="text-info text-decoration-none font-mono">EQBQUN...1qET</a>
                             </div>
                             <div class="d-flex justify-content-between small mb-2">
-                                <span class="text-secondary">Live Pool Reserves</span>
-                                <span class="fw-bold text-white" id="poolReserves">22.25 TON / 109.00 ARMC</span>
+                                <span class="text-secondary">Base Pool (Uniswap V2)</span>
+                                <a href="https://basescan.org/address/0xea5642C68bE690dB841342694F2f660f314AC1B9" target="_blank" class="text-primary text-decoration-none font-mono">0xea56...C1B9</a>
+                            </div>
+                            <div class="d-flex justify-content-between small mb-2">
+                                <span class="text-secondary">Live TON Reserves</span>
+                                <span class="fw-semibold text-white font-mono" id="poolReserves">23.05 TON / 105.22 ARMC</span>
                             </div>
                             <div class="d-flex justify-content-between small mb-2">
                                 <span class="text-secondary">Exchange Rate</span>
-                                <span class="fw-bold text-warning" id="tonRateText">1 TON ≈ 4.90 ARMC</span>
+                                <span class="fw-semibold text-warning font-mono" id="tonRateText">1 TON = 4.57 ARMC</span>
                             </div>
                             <div class="d-flex justify-content-between small">
-                                <span class="text-secondary">Supply Mintable?</span>
-                                <span class="fw-bold text-success">FALSE (Permanently Locked)</span>
+                                <span class="text-secondary">Supply Mintable</span>
+                                <span class="fw-semibold text-success">FALSE (Permanently Locked)</span>
                             </div>
                         </div>
 
                         <!-- Quick Swap Estimator -->
                         <div class="mb-3">
-                            <label class="form-label small text-secondary mb-1">🧮 Quick Swap Estimator (USD Value → $ARMC)</label>
+                            <label class="form-label small text-secondary mb-1">Swap Estimator (USD Value to ARMC)</label>
                             <div class="input-group input-group-sm">
-                                <span class="input-group-text bg-dark text-secondary border-secondary">$ USD</span>
-                                <input type="number" id="usdCalcInput" class="form-control bg-dark text-white border-secondary" value="20" oninput="updateCalc()">
-                                <span class="input-group-text bg-dark text-warning fw-bold border-secondary" id="armcCalcOutput">≈ 89.93 ARMC</span>
+                                <span class="input-group-text bg-dark text-secondary border-secondary">USD</span>
+                                <input type="number" id="usdCalcInput" class="form-control bg-dark text-white border-secondary font-mono" value="20" oninput="updateCalc()">
+                                <span class="input-group-text bg-dark text-success fw-bold border-secondary font-mono" id="armcCalcOutput">= 84.75 ARMC</span>
                             </div>
                         </div>
 
                         <div class="d-grid gap-2">
-                            <a href="https://app.ston.fi/swap?chartVisible=false&ft=TON&tt=EQDAYUeI-Q3OSuJQu2bh3kAFlPbmFQ3guyJViTro65Fej3j5" target="_blank" class="btn btn-emerald">
-                                💎 Swap TON → $ARMC on STON.fi
+                            <a href="https://app.ston.fi/swap?chartVisible=false&ft=TON&tt=EQDAYUeI-Q3OSuJQu2bh3kAFlPbmFQ3guyJViTro65Fej3j5" target="_blank" class="btn btn-primary-emerald">
+                                Swap TON to ARMC on STON.fi
                             </a>
-                            <a href="https://app.ston.fi/pools/EQBQUN7_FYdDWH_52EFy4Vq_fJxXpmuQy4Ll7SAmKl_e1qET" target="_blank" class="btn btn-outline-light btn-sm">
-                                💧 View or Add Liquidity (Earn 0.2% Fees)
+                            <a href="https://app.ston.fi/pools/EQBQUN7_FYdDWH_52EFy4Vq_fJxXpmuQy4Ll7SAmKl_e1qET" target="_blank" class="btn btn-outline-secondary text-light btn-sm">
+                                View or Provide Liquidity (0.20% Pool Fee)
                             </a>
                         </div>
                     </div>
@@ -298,60 +331,61 @@
         </div>
     </section>
 
-    <!-- NEW: Live Market Index & On-Chain Telemetry Terminal -->
+    <!-- Live Market Index & On-Chain Telemetry Terminal -->
     <section class="py-5" id="market-index">
         <div class="container">
-            <div class="glass-card">
+            <div class="surface-card">
                 <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-4">
                     <div>
+                        <div class="section-kicker mb-1">Real-Time Analytics</div>
                         <div class="d-flex align-items-center gap-2">
-                            <span class="pulse-dot"></span>
-                            <h3 class="fw-bold text-white mb-0">📈 $ARMC Live Market Index &amp; DEX Telemetry</h3>
+                            <span class="status-dot"></span>
+                            <h3 class="fw-bold text-white mb-0">ARMC Live Market Index &amp; DEX Telemetry</h3>
                         </div>
-                        <small class="text-secondary">Live on-chain feed synced directly with STON.fi AMM (`EQBQUN...1qET`) and TonAPI</small>
+                        <small class="text-secondary">Live on-chain feed synced directly with STON.fi AMM, GeckoTerminal, and TonAPI</small>
                     </div>
                     <div class="d-flex align-items-center gap-2">
-                        <span class="badge bg-dark border border-secondary text-secondary font-monospace" id="lastUpdatedBadge">Live Auto-Sync (15s)</span>
-                        <button class="btn btn-sm btn-outline-success" onclick="loadPoolStats()">🔄 Refresh Now</button>
+                        <span class="badge bg-dark border border-secondary text-secondary font-mono" id="lastUpdatedBadge">Live Auto-Sync (15s)</span>
+                        <button class="btn btn-sm btn-outline-success" onclick="loadPoolStats()">Refresh Data</button>
                     </div>
                 </div>
 
                 <!-- Global Benchmark Strip -->
                 <div class="row g-2 mb-4">
                     <div class="col-6 col-md-3">
-                        <div class="p-2 px-3 rounded-3 d-flex justify-content-between align-items-center" style="background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.4);">
+                        <div class="p-3 rounded-3 d-flex justify-content-between align-items-center" style="background: rgba(16, 185, 129, 0.08); border: 1px solid var(--border-emerald);">
                             <div>
-                                <small class="text-success fw-bold d-block" style="font-size: 0.7rem;">$ARMC / USD</small>
-                                <span class="fw-bold text-white" id="stripArmc">$0.2224</span>
+                                <small class="text-success fw-semibold d-block" style="font-size: 0.7rem;">ARMC / USD (TON)</small>
+                                <span class="fw-bold text-white font-mono" id="stripArmc">$0.2360</span>
                             </div>
-                            <span class="badge bg-success" id="stripArmcPct">+77.9%</span>
+                            <span class="badge bg-success-subtle text-success" id="stripArmcPct">+88.8%</span>
                         </div>
                     </div>
                     <div class="col-6 col-md-3">
-                        <div class="p-2 px-3 rounded-3 d-flex justify-content-between align-items-center" style="background: rgba(15, 23, 42, 0.9); border: 1px solid #1e293b;">
+                        <div class="p-3 rounded-3 d-flex justify-content-between align-items-center" style="background: var(--bg-elevated); border: 1px solid var(--border-subtle);">
                             <div>
-                                <small class="text-info fw-bold d-block" style="font-size: 0.7rem;">TON / USD (POOL IMPLIED)</small>
-                                <span class="fw-bold text-white" id="stripTon">$1.09</span>
+                                <small class="text-info fw-semibold d-block" style="font-size: 0.7rem;">ARMC / USD (BASE)</small>
+                                <span class="fw-bold text-white font-mono" id="stripBaseArmc">$0.2402</span>
                             </div>
-                            <span class="badge bg-info text-dark">TON L1</span>
+                            <span class="badge bg-primary-subtle text-info">Uniswap V2</span>
                         </div>
                     </div>
                     <div class="col-6 col-md-3">
-                        <div class="p-2 px-3 rounded-3 d-flex justify-content-between align-items-center" style="background: rgba(15, 23, 42, 0.9); border: 1px solid #1e293b;">
+                        <div class="p-3 rounded-3 d-flex justify-content-between align-items-center" style="background: var(--bg-elevated); border: 1px solid var(--border-subtle);">
                             <div>
-                                <small class="text-primary fw-bold d-block" style="font-size: 0.7rem;">ARMC / TON RATIO</small>
-                                <span class="fw-bold text-white" id="stripRatio">0.2040 TON</span>
+                                <small class="text-secondary fw-semibold d-block" style="font-size: 0.7rem;">ARMC / TON RATIO</small>
+                                <span class="fw-bold text-white font-mono" id="stripRatio">0.2190 TON</span>
                             </div>
-                            <span class="badge bg-primary">STON.fi</span>
+                            <span class="badge bg-dark border border-secondary text-light">STON.fi</span>
                         </div>
                     </div>
                     <div class="col-6 col-md-3">
-                        <div class="p-2 px-3 rounded-3 d-flex justify-content-between align-items-center" style="background: rgba(15, 23, 42, 0.9); border: 1px solid #1e293b;">
+                        <div class="p-3 rounded-3 d-flex justify-content-between align-items-center" style="background: var(--bg-elevated); border: 1px solid var(--border-subtle);">
                             <div>
-                                <small class="text-warning fw-bold d-block" style="font-size: 0.7rem;">GENESIS LAUNCH PRICE</small>
-                                <span class="fw-bold text-white">$0.1250</span>
+                                <small class="text-secondary fw-semibold d-block" style="font-size: 0.7rem;">GENESIS LAUNCH PRICE</small>
+                                <span class="fw-bold text-white font-mono">$0.1250</span>
                             </div>
-                            <span class="badge bg-secondary">8 ARMC/$1</span>
+                            <span class="badge bg-dark border border-secondary text-secondary">8 ARMC / $1</span>
                         </div>
                     </div>
                 </div>
@@ -360,43 +394,43 @@
                 <div class="row g-3 mb-4">
                     <div class="col-6 col-lg-2">
                         <div class="index-metric-card">
-                            <small class="text-secondary d-block mb-1" style="font-size: 0.72rem;">SPOT PRICE (USD)</small>
-                            <div class="fs-5 fw-bold text-success" id="idxPriceUsd">$0.2224</div>
-                            <small class="text-success" id="idxGainText">▲ +77.9% vs Launch</small>
+                            <small class="text-secondary d-block mb-1" style="font-size: 0.7rem;">SPOT PRICE (USD)</small>
+                            <div class="fs-5 fw-bold text-success font-mono" id="idxPriceUsd">$0.2360</div>
+                            <small class="text-success" id="idxGainText">+88.8% vs Launch</small>
                         </div>
                     </div>
                     <div class="col-6 col-lg-2">
                         <div class="index-metric-card">
-                            <small class="text-secondary d-block mb-1" style="font-size: 0.72rem;">SPOT PRICE (TON)</small>
-                            <div class="fs-5 fw-bold text-info" id="idxPriceTon">0.2040 TON</div>
-                            <small class="text-secondary" id="idxPerTon">4.90 ARMC / TON</small>
+                            <small class="text-secondary d-block mb-1" style="font-size: 0.7rem;">SPOT PRICE (TON)</small>
+                            <div class="fs-5 fw-bold text-info font-mono" id="idxPriceTon">0.2190 TON</div>
+                            <small class="text-secondary font-mono" id="idxPerTon">4.57 ARMC / TON</small>
                         </div>
                     </div>
                     <div class="col-6 col-lg-2">
                         <div class="index-metric-card">
-                            <small class="text-secondary d-block mb-1" style="font-size: 0.72rem;">IMPLIED FDV (21M)</small>
-                            <div class="fs-5 fw-bold text-white" id="idxFdv">$4,670,400</div>
+                            <small class="text-secondary d-block mb-1" style="font-size: 0.7rem;">IMPLIED FDV (21M)</small>
+                            <div class="fs-5 fw-bold text-white font-mono" id="idxFdv">$4,956,420</div>
                             <small class="text-secondary">21,000,000 Cap</small>
                         </div>
                     </div>
                     <div class="col-6 col-lg-2">
                         <div class="index-metric-card">
-                            <small class="text-secondary d-block mb-1" style="font-size: 0.72rem;">POOL LIQUIDITY (TVL)</small>
-                            <div class="fs-5 fw-bold text-warning" id="idxTvl">$48.48</div>
+                            <small class="text-secondary d-block mb-1" style="font-size: 0.7rem;">TON POOL TVL</small>
+                            <div class="fs-5 fw-bold text-white font-mono" id="idxTvl">$49.67</div>
                             <small class="text-secondary">STON.fi V1 Pool</small>
                         </div>
                     </div>
                     <div class="col-6 col-lg-2">
                         <div class="index-metric-card">
-                            <small class="text-secondary d-block mb-1" style="font-size: 0.72rem;">TON RESERVE</small>
-                            <div class="fs-5 fw-bold text-white" id="idxTonRes">22.25 TON</div>
+                            <small class="text-secondary d-block mb-1" style="font-size: 0.7rem;">TON RESERVE</small>
+                            <div class="fs-5 fw-bold text-white font-mono" id="idxTonRes">23.05 TON</div>
                             <small class="text-info">Active Depth</small>
                         </div>
                     </div>
                     <div class="col-6 col-lg-2">
                         <div class="index-metric-card">
-                            <small class="text-secondary d-block mb-1" style="font-size: 0.72rem;">ARMC IN POOL</small>
-                            <div class="fs-5 fw-bold text-white" id="idxArmcRes">109.00 ARMC</div>
+                            <small class="text-secondary d-block mb-1" style="font-size: 0.7rem;">ARMC IN POOL</small>
+                            <div class="fs-5 fw-bold text-white font-mono" id="idxArmcRes">105.22 ARMC</div>
                             <small class="text-success" id="idxHolders">Holders: Live</small>
                         </div>
                     </div>
@@ -405,10 +439,10 @@
                 <!-- Chart + Live On-Chain Pool Activity -->
                 <div class="row g-4 align-items-stretch">
                     <div class="col-lg-7">
-                        <div class="p-3 rounded-4 h-100" style="background: #080c17; border: 1px solid #1e293b;">
+                        <div class="p-3 rounded-4 h-100" style="background: #080c14; border: 1px solid var(--border-subtle);">
                             <div class="d-flex justify-content-between align-items-center mb-2">
-                                <span class="fw-bold text-white small">📊 $ARMC Price Trajectory &amp; AMM Liquidity Index (USD)</span>
-                                <span class="badge bg-success-subtle text-success">Constant-Product x*y=k</span>
+                                <span class="fw-semibold text-white small">ARMC Price Trajectory &amp; AMM Liquidity Index (USD)</span>
+                                <span class="badge bg-dark border border-secondary text-success font-mono">x * y = k</span>
                             </div>
                             <div style="height: 250px;">
                                 <canvas id="armcIndexChart"></canvas>
@@ -416,19 +450,20 @@
                         </div>
                     </div>
                     <div class="col-lg-5">
-                        <div class="p-3 rounded-4 h-100 d-flex flex-column justify-content-between" style="background: #080c17; border: 1px solid #1e293b;">
+                        <div class="p-3 rounded-4 h-100 d-flex flex-column justify-content-between" style="background: #080c14; border: 1px solid var(--border-subtle);">
                             <div>
                                 <div class="d-flex justify-content-between align-items-center mb-3">
-                                    <span class="fw-bold text-white small">⚡ Recent On-Chain Pool Transactions (TON)</span>
-                                    <a href="https://tonviewer.com/EQBQUN7_FYdDWH_52EFy4Vq_fJxXpmuQy4Ll7SAmKl_e1qET" target="_blank" class="small text-info text-decoration-none">View All ↗</a>
+                                    <span class="fw-semibold text-white small">Recent On-Chain Pool Transactions (TON)</span>
+                                    <a href="https://tonviewer.com/EQBQUN7_FYdDWH_52EFy4Vq_fJxXpmuQy4Ll7SAmKl_e1qET" target="_blank" class="small text-info text-decoration-none">View All</a>
                                 </div>
-                                <div id="liveTxList" class="small font-monospace">
+                                <div id="liveTxList" class="small font-mono">
                                     <div class="text-secondary py-3 text-center">Loading live blockchain transactions from TonAPI...</div>
                                 </div>
                             </div>
-                            <div class="mt-3 pt-2 border-top border-secondary d-flex justify-content-between align-items-center small">
-                                <span class="text-secondary">Pool Fee: <b class="text-white">0.20%</b></span>
-                                <a href="https://www.geckoterminal.com/ton/pools/EQBQUN7_FYdDWH_52EFy4Vq_fJxXpmuQy4Ll7SAmKl_e1qET" target="_blank" class="text-warning text-decoration-none fw-semibold">GeckoTerminal Pool ↗</a>
+                            <div class="mt-3 pt-2 border-top border-secondary border-opacity-25 d-flex flex-wrap justify-content-between align-items-center gap-2 small">
+                                <a href="https://dexscreener.com/ton/eqbqun7_fyddwh_52efy4vq_fjxxpmuqy4ll7samkl_e1qet" target="_blank" class="text-light text-decoration-none fw-medium">DexScreener (TON)</a>
+                                <a href="https://www.geckoterminal.com/base/pools/0xea5642c68be690db841342694f2f660f314ac1b9" target="_blank" class="text-info text-decoration-none fw-medium">GeckoTerminal (Base)</a>
+                                <a href="https://www.geckoterminal.com/ton/pools/EQBQUN7_FYdDWH_52EFy4Vq_fJxXpmuQy4Ll7SAmKl_e1qET" target="_blank" class="text-success text-decoration-none fw-medium">GeckoTerminal (TON)</a>
                             </div>
                         </div>
                     </div>
@@ -440,33 +475,36 @@
     <!-- Litepaper / Mission Section -->
     <section class="py-5" id="mission">
         <div class="container">
-            <div class="glass-card">
+            <div class="surface-card">
                 <div class="row align-items-center g-4">
                     <div class="col-lg-5 text-center">
-                        <img src="./arm-logo.png" onerror="this.onerror=null;this.src='/static/arm-logo.png';" alt="Rising Arm Emblem" style="width: 180px; height: 180px; border-radius: 28px; box-shadow: 0 0 40px rgba(16, 185, 129, 0.35);">
+                        <div style="width: 190px; height: 190px; margin: 0 auto; border-radius: 28px; padding: 6px; background: linear-gradient(145deg, rgba(255,255,255,0.10), rgba(16,185,129,0.16)); box-shadow: 0 20px 40px rgba(0,0,0,0.5);">
+                            <img src="/static/arm-logo.png" onerror="this.onerror=null;this.src='./arm-logo.png';" alt="Rising Arm Emblem" style="width: 100%; height: 100%; border-radius: 22px; object-fit: cover;">
+                        </div>
                         <div class="mt-3">
-                            <span class="badge bg-success-subtle text-success border border-success px-3 py-2">THE RISING ARM MANIFESTO</span>
+                            <span class="badge bg-dark border border-success text-success px-3 py-2">THE RISING ARM MANIFESTO</span>
                         </div>
                     </div>
                     <div class="col-lg-7">
+                        <div class="section-kicker mb-2">Core Philosophy</div>
                         <h2 class="fw-bold text-white mb-3">Why the Rising Arm?</h2>
                         <p class="text-secondary">
-                            For too long, financial markets and token launches have been rigged in favor of insiders who mint unlimited tokens and silence everyday participants.
+                            Too often, financial markets and token launches are structured around insider allocations, hidden minting privileges, and asymmetric access that sideline everyday participants.
                         </p>
                         <p class="text-light">
-                            <b>ARM Coin ($ARMC)</b> was created for <b>everyone</b>. Our emblem—a rising silver arm set inside a faceted emerald diamond—stands for one unbreakable principle: <b>No one can stop your voice in the market.</b>
+                            <strong class="text-white">ARM Coin ($ARMC)</strong> was engineered for <strong class="text-white">everyone</strong>. Our emblem—a sculpted silver arm rising inside a faceted emerald diamond—represents one unyielding principle: <strong class="text-white">No one can stop your voice in the market.</strong>
                         </p>
                         <div class="row g-3 mt-2">
                             <div class="col-sm-6">
-                                <div class="p-3 rounded-3 h-100" style="background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.25);">
-                                    <div class="fw-bold text-white mb-1">🛡️ Zero Insider Inflation</div>
-                                    <small class="text-secondary">Contract ownership on TON is permanently revoked (`admin: None`). Nobody can ever mint a single extra token beyond 21,000,000.</small>
+                                <div class="p-3 rounded-3 h-100" style="background: var(--bg-elevated); border: 1px solid var(--border-subtle);">
+                                    <div class="fw-semibold text-white mb-1">Zero Insider Inflation</div>
+                                    <small class="text-secondary">Contract ownership on TON is permanently revoked (<span class="font-mono">admin: None</span>). No entity can mint beyond 21,000,000 ARMC.</small>
                                 </div>
                             </div>
                             <div class="col-sm-6">
-                                <div class="p-3 rounded-3 h-100" style="background: rgba(59, 130, 246, 0.08); border: 1px solid rgba(59, 130, 246, 0.25);">
-                                    <div class="fw-bold text-white mb-1">🌍 Borderless Access</div>
-                                    <small class="text-secondary">Whether you use Tonkeeper &amp; Telegram on TON or Phantom &amp; MetaMask on Base, $ARMC is built to be accessible everywhere.</small>
+                                <div class="p-3 rounded-3 h-100" style="background: var(--bg-elevated); border: 1px solid var(--border-subtle);">
+                                    <div class="fw-semibold text-white mb-1">Borderless Multi-Chain Access</div>
+                                    <small class="text-secondary">Accessible globally via Tonkeeper and Trust Wallet on TON, or Phantom, MetaMask, and Trust Wallet on Base.</small>
                                 </div>
                             </div>
                         </div>
@@ -480,48 +518,60 @@
     <section class="py-5" id="security">
         <div class="container">
             <div class="text-center mb-5">
-                <h2 class="fw-bold text-white">🔒 Verified On-Chain Security</h2>
-                <p class="text-secondary">Don't trust words—verify every rule directly on the blockchain.</p>
+                <div class="section-kicker mb-2">Transparency &amp; Audits</div>
+                <h2 class="fw-bold text-white">Verified On-Chain Security</h2>
+                <p class="text-secondary">Every supply constraint and contract parameter is publicly verifiable on-chain.</p>
             </div>
             <div class="row g-4">
                 <div class="col-md-3">
-                    <div class="glass-card h-100">
-                        <div class="fs-2 mb-2">🔥</div>
-                        <h5 class="fw-bold text-white">Ownership Revoked</h5>
-                        <p class="text-secondary small mb-3">
-                            On-chain `mintable` flag is permanently `false` and `admin_address` is `None`. Supply can never be inflated.
-                        </p>
-                        <a href="https://tonviewer.com/EQDAYUeI-Q3OSuJQu2bh3kAFlPbmFQ3guyJViTro65Fej3j5" target="_blank" class="btn btn-sm btn-outline-success w-100">Verify on Tonviewer ↗</a>
+                    <div class="surface-card h-100 d-flex flex-column justify-content-between">
+                        <div>
+                            <div class="text-success fw-semibold small mb-2">01 / IMMUTABLE SUPPLY</div>
+                            <h5 class="fw-bold text-white">Ownership Revoked</h5>
+                            <p class="text-secondary small mb-3">
+                                On-chain <span class="font-mono">mintable</span> flag is permanently <span class="font-mono">false</span> and <span class="font-mono">admin_address</span> is <span class="font-mono">None</span>.
+                            </p>
+                        </div>
+                        <a href="https://tonviewer.com/EQDAYUeI-Q3OSuJQu2bh3kAFlPbmFQ3guyJViTro65Fej3j5" target="_blank" class="btn btn-sm btn-outline-success w-100">Verify on Tonviewer</a>
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <div class="glass-card h-100">
-                        <div class="fs-2 mb-2">💎</div>
-                        <h5 class="fw-bold text-white">21M Hard Cap</h5>
-                        <p class="text-secondary small mb-3">
-                            Modeled on Bitcoin's 21,000,000 scarcity standard, with `ERC20Burnable` deflationary support on Base.
-                        </p>
-                        <a href="https://basescan.org/token/0x2c763209199c1c9E621F5920223bd242C19BB36f" target="_blank" class="btn btn-sm btn-outline-info w-100">Verify on Basescan ↗</a>
+                    <div class="surface-card h-100 d-flex flex-column justify-content-between">
+                        <div>
+                            <div class="text-info fw-semibold small mb-2">02 / VERIFIED SOURCE</div>
+                            <h5 class="fw-bold text-white">BaseScan Verified</h5>
+                            <p class="text-secondary small mb-3">
+                                Base Mainnet Solidity source code (<span class="font-mono">ARMCoinBEP20</span>) is compiled, matched, and verified on BaseScan.
+                            </p>
+                        </div>
+                        <a href="https://basescan.org/address/0x2c763209199c1c9E621F5920223bd242C19BB36f#code" target="_blank" class="btn btn-sm btn-outline-info w-100">Inspect Source Code</a>
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <div class="glass-card h-100">
-                        <div class="fs-2 mb-2">💧</div>
-                        <h5 class="fw-bold text-white">Live AMM Liquidity</h5>
-                        <p class="text-secondary small mb-3">
-                            Automated Market Maker pool active 24/7 on STON.fi (`ARMC / TON`), pricing every trade transparently.
-                        </p>
-                        <a href="https://app.ston.fi/pools/EQBQUN7_FYdDWH_52EFy4Vq_fJxXpmuQy4Ll7SAmKl_e1qET" target="_blank" class="btn btn-sm btn-outline-light w-100">Inspect STON.fi Pool ↗</a>
+                    <div class="surface-card h-100 d-flex flex-column justify-content-between">
+                        <div>
+                            <div class="text-light fw-semibold small mb-2">03 / DUAL DEX POOLS</div>
+                            <h5 class="fw-bold text-white">Live AMM Liquidity</h5>
+                            <p class="text-secondary small mb-3">
+                                Decentralized liquidity pools active 24/7 on STON.fi (TON) and Uniswap V2 (Base).
+                            </p>
+                        </div>
+                        <a href="https://dexscreener.com/ton/eqbqun7_fyddwh_52efy4vq_fjxxpmuqy4ll7samkl_e1qet" target="_blank" class="btn btn-sm btn-outline-secondary text-light w-100">View DexScreener</a>
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <div class="glass-card h-100">
-                        <div class="fs-2 mb-2">✅</div>
-                        <h5 class="fw-bold text-white">Registry Audit</h5>
-                        <p class="text-secondary small mb-3">
-                            Official metadata and permanent assets submitted to the public Tonkeeper `ton-assets` registry.
-                        </p>
-                        <a href="https://github.com/tonkeeper/ton-assets/pull/6757" target="_blank" class="btn btn-sm btn-outline-warning w-100">View GitHub PR #6757 ↗</a>
+                    <div class="surface-card h-100 d-flex flex-column justify-content-between">
+                        <div>
+                            <div class="text-warning fw-semibold small mb-2">04 / OFFICIAL CHANNELS</div>
+                            <h5 class="fw-bold text-white">Verified Community</h5>
+                            <p class="text-secondary small mb-3">
+                                Connect directly with the ARMC community and track official announcements on Telegram and X.
+                            </p>
+                        </div>
+                        <div class="d-flex gap-2">
+                            <a href="https://t.me/armcointoken2026" target="_blank" class="btn btn-sm btn-outline-info w-50">Telegram</a>
+                            <a href="https://x.com/armcoin_token" target="_blank" class="btn btn-sm btn-outline-light w-50">X (Twitter)</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -532,57 +582,57 @@
     <section class="py-5" id="roadmap">
         <div class="container">
             <div class="text-center mb-5">
-                <h2 class="fw-bold text-white">🗺️ $ARMC Strategic Roadmap</h2>
-                <p class="text-secondary">Step-by-step execution from decentralized launch to global adoption.</p>
+                <div class="section-kicker mb-2">Execution Plan</div>
+                <h2 class="fw-bold text-white">ARMC Strategic Roadmap</h2>
+                <p class="text-secondary">Structured rollout from multi-chain genesis to global market expansion.</p>
             </div>
             <div class="row g-4">
                 <div class="col-md-6 col-lg-3">
-                    <div class="glass-card h-100">
-                        <span class="badge bg-success mb-2">PHASE 1 — COMPLETED ✅</span>
-                        <h5 class="fw-bold text-white">Genesis &amp; Launch</h5>
+                    <div class="surface-card h-100">
+                        <span class="badge bg-success-subtle text-success border border-success mb-2">PHASE 1 — COMPLETED</span>
+                        <h5 class="fw-bold text-white">Genesis &amp; Dual Launch</h5>
                         <ul class="small text-secondary ps-3 mb-0">
-                            <li>Deploy $ARMC Jetton on TON Mainnet</li>
-                            <li>Deploy $ARMC ERC-20 on Base Mainnet</li>
-                            <li>Revoke TON minting ownership (`mintable: false`)</li>
-                            <li>Launch STON.fi `ARMC/TON` liquidity pool</li>
-                            <li>Launch official GitHub Pages website</li>
+                            <li>Deploy ARMC Jetton on TON Mainnet</li>
+                            <li>Deploy ARMC ERC-20 on Base Mainnet</li>
+                            <li>Revoke TON minting ownership</li>
+                            <li>Launch STON.fi &amp; Uniswap V2 pools</li>
+                            <li>Verify BaseScan contract source code</li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-3">
-                    <div class="glass-card h-100" style="border-color: #fbbf24;">
-                        <span class="badge bg-warning text-dark mb-2">PHASE 2 — IN PROGRESS 🔄</span>
-                        <h5 class="fw-bold text-white">Verification &amp; Multi-DEX</h5>
+                    <div class="surface-card h-100" style="border-color: rgba(251, 191, 36, 0.35);">
+                        <span class="badge bg-warning-subtle text-warning border border-warning mb-2">PHASE 2 — IN PROGRESS</span>
+                        <h5 class="fw-bold text-white">Verification &amp; Depth</h5>
                         <ul class="small text-secondary ps-3 mb-0">
-                            <li>Tonkeeper `ton-assets` verification (`PR #6757`)</li>
-                            <li>Activate Base Mainnet Uniswap v4 pool</li>
-                            <li>Basescan contract source verification</li>
-                            <li>Expand DEX liquidity past $1,000+ TVL</li>
-                            <li>Launch official Telegram &amp; X community</li>
+                            <li>Official Telegram &amp; X community growth</li>
+                            <li>BaseScan &amp; GeckoTerminal profile branding</li>
+                            <li>Expand DEX liquidity depth ($1,000+ TVL)</li>
+                            <li>Tonkeeper &amp; Trust Wallet registry listing</li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-3">
-                    <div class="glass-card h-100">
-                        <span class="badge bg-info text-dark mb-2">PHASE 3 — EXPANSION 🚀</span>
-                        <h5 class="fw-bold text-white">Market Trackers</h5>
+                    <div class="surface-card h-100">
+                        <span class="badge bg-info-subtle text-info border border-info mb-2">PHASE 3 — EXPANSION</span>
+                        <h5 class="fw-bold text-white">Global Trackers</h5>
                         <ul class="small text-secondary ps-3 mb-0">
-                            <li>DexScreener &amp; GeckoTerminal trending charts</li>
                             <li>CoinGecko &amp; CoinMarketCap listings</li>
-                            <li>Phantom &amp; Bybit Web3 featured indexing</li>
+                            <li>Trust Wallet &amp; Phantom native USD pricing</li>
+                            <li>DEXTools &amp; DexScreener Base indexing</li>
                             <li>5,000+ on-chain holders milestone</li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-3">
-                    <div class="glass-card h-100">
-                        <span class="badge bg-secondary mb-2">PHASE 4 — GLOBAL 🌍</span>
-                        <h5 class="fw-bold text-white">Ecosystem &amp; CEX</h5>
+                    <div class="surface-card h-100">
+                        <span class="badge bg-dark border border-secondary text-secondary mb-2">PHASE 4 — ECOSYSTEM</span>
+                        <h5 class="fw-bold text-white">CEX &amp; Integrations</h5>
                         <ul class="small text-secondary ps-3 mb-0">
                             <li>Centralized Exchange (CEX) Spot applications</li>
-                            <li>Community Governance voting portal</li>
-                            <li>Merchant &amp; Telegram Mini-App integrations</li>
-                            <li>Global community ambassadors</li>
+                            <li>Community Governance portal</li>
+                            <li>Merchant &amp; Telegram Mini-App payments</li>
+                            <li>Global ambassador program</li>
                         </ul>
                     </div>
                 </div>
@@ -594,43 +644,44 @@
     <section class="py-5" id="faq">
         <div class="container">
             <div class="text-center mb-4">
-                <h2 class="fw-bold text-white">❓ Frequently Asked Questions</h2>
-                <p class="text-secondary">Everything buyers need to know about $ARMC.</p>
+                <div class="section-kicker mb-2">Support</div>
+                <h2 class="fw-bold text-white">Frequently Asked Questions</h2>
+                <p class="text-secondary">Technical and market details for ARMC participants.</p>
             </div>
             <div class="accordion" id="faqAccordion">
                 <div class="accordion-item rounded-3 mb-3 overflow-hidden">
                     <h2 class="accordion-header">
                         <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
-                            How do I buy $ARMC right now?
+                            How do I purchase ARMC today?
                         </button>
                     </h2>
                     <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
                         <div class="accordion-body text-secondary small">
-                            Click <b>"Buy $ARMC"</b> at the top of this page to open <b>STON.fi</b> with our official TON Mainnet contract (`EQDAYUeI-Q3OSuJQu2bh3kAFlPbmFQ3guyJViTro65Fej3j5`) pre-loaded. Connect <b>Tonkeeper</b>, <b>Trust Wallet</b>, or <b>Telegram Wallet</b>, enter the amount of TON you want to swap, and confirm.
+                            Select <strong class="text-white">Trade on STON.fi (TON)</strong> to swap TON for ARMC using Tonkeeper or Trust Wallet, or select <strong class="text-white">Trade on Uniswap (Base)</strong> to swap Base ETH for ARMC using Phantom, MetaMask, or Trust Wallet.
                         </div>
                     </div>
                 </div>
                 <div class="accordion-item rounded-3 mb-3 overflow-hidden">
                     <h2 class="accordion-header">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
-                            Why doesn't $ARMC appear when I type "ARMC" by name in search?
+                            Why should I search by Contract Address instead of token name?
                         </button>
                     </h2>
                     <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
                         <div class="accordion-body text-secondary small">
-                            Wallets and DEXs require official registry verification (`PR #6757` currently under review at `tonkeeper/ton-assets`) and liquidity milestones before enabling name search. Until then, always paste the exact contract address (`EQDAYUeI-Q3OSuJQu2bh3kAFlPbmFQ3guyJViTro65Fej3j5` on TON or `0x2c763209199c1c9E621F5920223bd242C19BB36f` on Base) or use the direct buttons on this website.
+                            Wallets and DEX aggregators restrict name-based search until global registry listings and liquidity thresholds are finalized. Using the exact contract address (<span class="font-mono text-light">EQDAYUeI-Q3OSuJQu2bh3kAFlPbmFQ3guyJViTro65Fej3j5</span> on TON or <span class="font-mono text-light">0x2c763209199c1c9E621F5920223bd242C19BB36f</span> on Base) guarantees you always interact with the authentic contract.
                         </div>
                     </div>
                 </div>
                 <div class="accordion-item rounded-3 mb-3 overflow-hidden">
                     <h2 class="accordion-header">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
-                            Can the creator mint more than 21,000,000 ARMC?
+                            Can additional ARMC tokens be minted above 21,000,000?
                         </button>
                     </h2>
                     <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
                         <div class="accordion-body text-secondary small">
-                            <b>No.</b> On TON Mainnet, contract ownership has been permanently revoked (`mintable: false`, `admin: None`), which you can verify anytime on Tonviewer. On Base Mainnet, the smart contract enforces a strict `MAX_SUPPLY` constant of `21,000,000 ARMC`.
+                            <strong class="text-white">No.</strong> On TON Mainnet, contract ownership has been permanently revoked (<span class="font-mono">mintable: false</span>, <span class="font-mono">admin: None</span>). On Base Mainnet, the verified smart contract enforces an immutable <span class="font-mono">MAX_SUPPLY</span> ceiling of 21,000,000 ARMC.
                         </div>
                     </div>
                 </div>
@@ -639,44 +690,47 @@
     </section>
 
     <!-- Footer -->
-    <footer class="py-4 border-top border-secondary mt-5 text-center text-secondary small">
+    <footer class="py-4 border-top border-secondary border-opacity-25 mt-5 text-center text-secondary small">
         <div class="container d-flex flex-wrap justify-content-between align-items-center gap-3">
             <div class="d-flex align-items-center gap-2">
-                <img src="./arm-logo.png" onerror="this.onerror=null;this.src='/static/arm-logo.png';" alt="ARMC" style="width: 26px; height: 26px; border-radius: 6px;">
-                <span class="text-white fw-bold">ARM Coin ($ARMC)</span> &copy; 2026. Power in Your Hands.
+                <img src="/static/arm-logo.png" onerror="this.onerror=null;this.src='./arm-logo.png';" alt="ARMC" style="width: 24px; height: 24px; border-radius: 6px;">
+                <span class="text-white fw-semibold">ARM Coin ($ARMC)</span> &copy; 2026. Power in Your Hands.
             </div>
             <div class="d-flex flex-wrap gap-3">
                 <a href="https://app.ston.fi/swap?chartVisible=false&ft=TON&tt=EQDAYUeI-Q3OSuJQu2bh3kAFlPbmFQ3guyJViTro65Fej3j5" target="_blank" class="text-secondary text-decoration-none">STON.fi (TON)</a>
+                <a href="https://app.uniswap.org/swap?chain=base&outputCurrency=0x2c763209199c1c9E621F5920223bd242C19BB36f" target="_blank" class="text-secondary text-decoration-none">Uniswap (Base)</a>
                 <a href="https://tonviewer.com/EQDAYUeI-Q3OSuJQu2bh3kAFlPbmFQ3guyJViTro65Fej3j5" target="_blank" class="text-secondary text-decoration-none">Tonviewer</a>
-                <a href="https://basescan.org/token/0x2c763209199c1c9E621F5920223bd242C19BB36f" target="_blank" class="text-secondary text-decoration-none">Basescan</a>
-                <a href="https://github.com/armcoin2026/ARMC" target="_blank" class="text-secondary text-decoration-none">GitHub</a>
+                <a href="https://basescan.org/token/0x2c763209199c1c9E621F5920223bd242C19BB36f" target="_blank" class="text-secondary text-decoration-none">BaseScan</a>
+                <a href="https://dexscreener.com/ton/eqbqun7_fyddwh_52efy4vq_fjxxpmuqy4ll7samkl_e1qet" target="_blank" class="text-secondary text-decoration-none">DexScreener</a>
+                <a href="https://t.me/armcointoken2026" target="_blank" class="text-secondary text-decoration-none">Telegram</a>
+                <a href="https://x.com/armcoin_token" target="_blank" class="text-secondary text-decoration-none">X (Twitter)</a>
             </div>
         </div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        let liveArmcPriceUsd = 0.2224;
+        let liveArmcPriceUsd = 0.2360;
         let indexChart = null;
 
         function copyText(text, label) {
             navigator.clipboard.writeText(text);
             const msg = document.getElementById('copyMsg');
-            msg.innerText = `✅ Copied ${label}: ${text}`;
+            msg.innerText = `Copied ${label}: ${text}`;
             setTimeout(() => { msg.innerText = ''; }, 4000);
         }
 
         function updateCalc() {
             const usd = parseFloat(document.getElementById('usdCalcInput').value) || 0;
             const armc = liveArmcPriceUsd > 0 ? (usd / liveArmcPriceUsd) : 0;
-            document.getElementById('armcCalcOutput').innerText = `≈ ${armc.toLocaleString(undefined, { maximumFractionDigits: 2 })} ARMC`;
+            document.getElementById('armcCalcOutput').innerText = `= ${armc.toLocaleString(undefined, { maximumFractionDigits: 2 })} ARMC`;
         }
 
         async function addBaseToWallet() {
             const msg = document.getElementById('copyMsg');
             const providerObj = (window.phantom && window.phantom.ethereum) ? window.phantom.ethereum : window.ethereum;
             if (!providerObj) {
-                msg.innerText = 'ℹ️ Open this page inside Phantom or MetaMask browser to 1-click import, or copy 0x2c76...B36f above.';
+                msg.innerText = 'Open this page inside Phantom or MetaMask browser to import with one click, or copy 0x2c76...B36f above.';
                 return;
             }
             try {
@@ -692,7 +746,7 @@
                         },
                     },
                 });
-                msg.innerText = '💎 $ARMC (Base Mainnet) added to your wallet!';
+                msg.innerText = 'ARMC (Base Mainnet) added to your wallet.';
             } catch (e) {
                 msg.innerText = 'Note: ' + (e.message || e);
             }
@@ -709,7 +763,7 @@
             const pAfter15 = ((proj15Ton) / (k / proj15Ton)) * tonPriceUsd;
 
             const labels = ['Genesis ($0.125)', 'Pool Block #1', 'Pool Block #2', 'Live Spot Now', '+5 TON Buy Depth', '+15 TON Buy Depth'];
-            const values = [0.1250, 0.1355, 0.1419, Number(currentPrice.toFixed(4)), Number(pAfter5.toFixed(4)), Number(pAfter15.toFixed(4))];
+            const values = [0.1250, 0.1419, 0.2224, Number(currentPrice.toFixed(4)), Number(pAfter5.toFixed(4)), Number(pAfter15.toFixed(4))];
 
             if (indexChart) {
                 indexChart.data.datasets[0].data = values;
@@ -722,15 +776,15 @@
                 data: {
                     labels: labels,
                     datasets: [{
-                        label: '$ARMC Price (USD)',
+                        label: 'ARMC Price (USD)',
                         data: values,
                         borderColor: '#10b981',
-                        backgroundColor: 'rgba(16, 185, 129, 0.16)',
-                        borderWidth: 2.5,
-                        pointBackgroundColor: ['#64748b', '#34d399', '#34d399', '#fbbf24', '#38bdf8', '#38bdf8'],
-                        pointRadius: [4, 4, 4, 6, 4, 4],
+                        backgroundColor: 'rgba(16, 185, 129, 0.12)',
+                        borderWidth: 2,
+                        pointBackgroundColor: ['#64748b', '#34d399', '#34d399', '#ffffff', '#38bdf8', '#38bdf8'],
+                        pointRadius: [3, 3, 3, 5, 3, 3],
                         fill: true,
-                        tension: 0.35
+                        tension: 0.3
                     }]
                 },
                 options: {
@@ -742,14 +796,14 @@
                     scales: {
                         x: {
                             ticks: { color: '#94a3b8', font: { size: 11 } },
-                            grid: { color: 'rgba(148, 163, 184, 0.08)' }
+                            grid: { color: 'rgba(148, 163, 184, 0.06)' }
                         },
                         y: {
                             ticks: {
                                 color: '#94a3b8',
                                 callback: (v) => '$' + v.toFixed(3)
                             },
-                            grid: { color: 'rgba(148, 163, 184, 0.08)' }
+                            grid: { color: 'rgba(148, 163, 184, 0.06)' }
                         }
                     }
                 }
@@ -768,17 +822,28 @@
             } catch (e) {}
 
             try {
+                const baseRes = await fetch('https://api.geckoterminal.com/api/v2/networks/base/pools/0xea5642c68be690db841342694f2f660f314ac1b9');
+                if (baseRes.ok) {
+                    const bData = await baseRes.json();
+                    const pUsd = parseFloat(bData?.data?.attributes?.base_token_price_usd || 0);
+                    if (pUsd > 0) {
+                        document.getElementById('stripBaseArmc').innerText = `$${pUsd.toFixed(4)}`;
+                    }
+                }
+            } catch (e) {}
+
+            try {
                 const txRes = await fetch('https://tonapi.io/v2/blockchain/accounts/EQBQUN7_FYdDWH_52EFy4Vq_fJxXpmuQy4Ll7SAmKl_e1qET/transactions?limit=5');
                 if (!txRes.ok) throw new Error('Tx fetch failed');
                 const txData = await txRes.json();
                 const txs = txData.transactions || [];
                 const container = document.getElementById('liveTxList');
                 if (txs.length === 0) {
-                    container.innerHTML = '<div class="text-secondary py-2">Pool active — waiting for next swap</div>';
+                    container.innerHTML = '<div class="text-secondary py-2">Pool active — awaiting next swap</div>';
                     return;
                 }
                 container.innerHTML = txs.map(tx => {
-                    const hashShort = (tx.hash || '').substring(0, 10) + '...';
+                    const hashShort = (tx.hash || '').substring(0, 12) + '...';
                     const ok = tx.success !== false;
                     const badge = ok
                         ? '<span class="badge bg-success-subtle text-success">CONFIRMED</span>'
@@ -795,7 +860,7 @@
                     `;
                 }).join('');
             } catch (e) {
-                document.getElementById('liveTxList').innerHTML = '<div class="text-secondary py-2">Live pool verified on Tonviewer ↗</div>';
+                document.getElementById('liveTxList').innerHTML = '<div class="text-secondary py-2">Live pool verified on Tonviewer</div>';
             }
         }
 
@@ -816,7 +881,7 @@
                     document.getElementById('poolReserves').innerText = `${tonRes.toFixed(2)} TON / ${armcRes.toFixed(2)} ARMC`;
                     const armcPerTon = armcRes / tonRes;
                     const tonPerArmc = tonRes / armcRes;
-                    document.getElementById('tonRateText').innerText = `1 TON ≈ ${armcPerTon.toFixed(2)} ARMC`;
+                    document.getElementById('tonRateText').innerText = `1 TON = ${armcPerTon.toFixed(2)} ARMC`;
 
                     document.getElementById('idxTonRes').innerText = `${tonRes.toFixed(2)} TON`;
                     document.getElementById('idxArmcRes').innerText = `${armcRes.toFixed(2)} ARMC`;
@@ -824,7 +889,7 @@
                     document.getElementById('idxPerTon').innerText = `${armcPerTon.toFixed(2)} ARMC / TON`;
                     document.getElementById('stripRatio').innerText = `${tonPerArmc.toFixed(4)} TON`;
 
-                    let tonPriceUsd = 1.09;
+                    let tonPriceUsd = 1.08;
                     if (lpUsd > 0) {
                         liveArmcPriceUsd = (lpUsd / 2.0) / armcRes;
                         tonPriceUsd = (lpUsd / 2.0) / tonRes;
@@ -840,10 +905,9 @@
 
                         document.getElementById('stripArmc').innerText = priceStr;
                         document.getElementById('stripArmcPct').innerText = `${gainPct >= 0 ? '+' : ''}${gainPct}%`;
-                        document.getElementById('stripTon').innerText = `$${tonPriceUsd.toFixed(2)}`;
 
                         document.getElementById('idxPriceUsd').innerText = priceStr;
-                        document.getElementById('idxGainText').innerText = `▲ +${gainPct}% vs Launch`;
+                        document.getElementById('idxGainText').innerText = `+${gainPct}% vs Launch`;
                         document.getElementById('idxFdv').innerText = `$${Math.round(fdv).toLocaleString()}`;
                         document.getElementById('idxTvl').innerText = `$${lpUsd.toFixed(2)}`;
                         updateCalc();
@@ -854,7 +918,7 @@
                 }
             } catch (e) {
                 updateCalc();
-                renderIndexChart(liveArmcPriceUsd, 22.25, 109.0, 1.09);
+                renderIndexChart(liveArmcPriceUsd, 23.05, 105.22, 1.08);
             }
             loadOnChainActivity();
         }
